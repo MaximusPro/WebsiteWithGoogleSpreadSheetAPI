@@ -1,8 +1,7 @@
+<html>
 <?php
-
 require('config.php');
-
-header('Content-Type: text/html; charset=utf-8');
+//header('Content-Type: text/html; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -96,8 +95,11 @@ $tg_url = "https://api.telegram.org/bot" . TELEGRAM_TOKEN .
 @file_get_contents($tg_url);  // тихо отправляем, ошибки не показываем пользователю
 
 // 5. Успешный ответ
+
+echo '<meta http-equiv="refresh" content="2;url=success-order.php">';
 ?>
-<!DOCTYPE html>
+</html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -115,4 +117,4 @@ $tg_url = "https://api.telegram.org/bot" . TELEGRAM_TOKEN .
     <p>Мы свяжемся с вами в ближайшее время.</p>
     <a href="./index.php">Вернуться на главную</a>
 </body>
-</html>
+</html> -->
