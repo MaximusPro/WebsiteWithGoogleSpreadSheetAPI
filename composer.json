@@ -1,0 +1,15 @@
+{
+    "scripts": {
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit"
+        ]
+    },
+    "require": {
+        "google/apiclient": "^2.15",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "config": {
+        "process-timeout": 3000
+    }
+}
