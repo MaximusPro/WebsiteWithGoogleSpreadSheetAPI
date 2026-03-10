@@ -29,3 +29,21 @@ A simple and reliable contact form for websites that:
 ```bash
 git clone https://github.com/MaximusPro/WebsiteWithGoogleSpreadSheetAPI.git
 cd WebsiteWithGoogleSpreadSheetAPI
+```
+### 2. Configure Google Sheets and Telegram
+
+#### 1. Create a Google Spreadsheet
+Copy the Spreadsheet ID from the URL
+Add headers in the first row:
+```Code
+Date | Name | Phone | Message | IP
+```
+Create a Service Account in Google Cloud
+→ Enable Google Sheets API
+→ Create key → download JSON → rename to credentials.json
+→ Share the spreadsheet with the client_email from the JSON file (role Editor)
+Create a Telegram bot via @BotFather
+Get the TOKEN
+Send any message to the bot → get your CHAT_ID via:
+https://api.telegram.org/bot<TOKEN>/getUpdates
+Edit submit.php with your values
