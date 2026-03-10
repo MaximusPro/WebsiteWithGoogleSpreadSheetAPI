@@ -76,9 +76,9 @@ $MAX_REQUESTS_PER_5MIN = 5;   // sequrity from spam on IP
 ### 3. Installation into an existing Docker LAMP / site in the www folder
 Assumes you already have a running container with PHP/Apache and a volume mounted to /var/www/html.
 How to download Docker see on website:
-https://docker.com/...
-How to install lamp-compose see link on github:
-https://github.com/...
+[https://docker.com/...](https://docs.docker.com/engine/install/ubuntu/)
+How to install docker-compose-lamp see link on github:
+[https://github.com/...](https://github.com/sprintcube/docker-compose-lamp)
 #### 1. Copy project files into your site's folder:
 ```Bash
 # On host
@@ -122,4 +122,12 @@ apt update && apt install -y libzip-dev
 docker-php-ext-install zip
 ```
 (After this, restart the container if necessary)
+### 4. Testing
+
+Open: http://localhost/index.php (or your domain/port)
+Fill out and submit the form
+Check:
+New row appears in Google Spreadsheet
+Notification arrives in Telegram
+"Thank you" success page is shown
 
