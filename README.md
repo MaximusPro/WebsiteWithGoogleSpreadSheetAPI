@@ -109,3 +109,17 @@ composer install --no-interaction --prefer-dist
 mv /usr/bin/unzip.bak /usr/bin/unzip
 
 ```
+Composer will see that unzip is missing → enable ZipArchive.
+Sometimes ZipArchive in Docker works faster due to fewer system calls (but more often it's slower, so test it out).
+Make sure the zip extension is enabled (required for fallback)
+```Bash
+# Into container
+php -m | grep zip
+```
+If nothing appears → install:
+```Bash
+apt update && apt install -y libzip-dev
+docker-php-ext-install zip
+```
+(After this, restart the container if necessary)
+
