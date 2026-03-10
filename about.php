@@ -1,6 +1,6 @@
 <?php
 require("config.php");
-$pageTitle = "Contact Us";
+$pageTitle = "Prizm About";
 include(ROOT. "templates/head.tpl");
 include(ROOT. "templates/preloader.tpl");
 include(ROOT. "templates/header-menu.tpl");

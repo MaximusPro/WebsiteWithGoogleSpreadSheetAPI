@@ -1,6 +1,6 @@
 <?php
 require("config.php");
-$pageTitle = "Prism HeadPage";
+$pageTitle = "Prism Services";
 include(ROOT. "templates/head.tpl");
 include(ROOT. "templates/preloader.tpl");
 include(ROOT. "templates/header-menu.tpl");

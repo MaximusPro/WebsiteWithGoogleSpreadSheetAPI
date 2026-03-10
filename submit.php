@@ -5,7 +5,7 @@ require('config.php');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    die('Метод не разрешён');
+    die('Method permission denied.');
 }
 
 // 1. Защита от спама по IP (файловая, на 5 минут)
@@ -17,7 +17,7 @@ $now = time();
 if (isset($cache[$ip])) {
     $requests = array_filter($cache[$ip], fn($t) => $t > $now - 300);
     if (count($requests) >= $MAX_REQUESTS_PER_5MIN) {
-        die('Слишком много заявок. Попробуйте через 5 минут.');
+        die('Too many requests. Try again in 5 minutes.');
     }
     $cache[$ip] = $requests;
 }
@@ -30,7 +30,7 @@ $phone   = trim($_POST['phone']   ?? '');
 $message = trim($_POST['message'] ?? '');
 
 if (empty($name) || empty($phone)) {
-    die('Заполните обязательные поля: имя и телефон');
+    die('Fill necessary fields: name and phone!');
 }
 
 // 3. Запись в Google Sheets
@@ -68,23 +68,23 @@ try {
     $response = $service->spreadsheets_values->append(SPREADSHEET_ID, $range, $body, $params);
     
     // Если дошло сюда — успех
-    error_log("Успешно добавлена строка: " . print_r($response, true));
+    error_log("Successfully added line: " . print_r($response, true));
 
 } catch (\Google\Service\Exception $e) {
     $errorMessage = $e->getMessage();
     error_log("Google API Exception: " . $errorMessage);
-    die('Ошибка Google Sheets API: ' . htmlspecialchars($errorMessage));
+    die('ERROR Google Sheets API: ' . htmlspecialchars($errorMessage));
 } catch (Exception $e) {
     error_log("Общая ошибка: " . $e->getMessage());
-    die('Ошибка при записи в таблицу: ' . htmlspecialchars($e->getMessage()));
+    die('Error writing to table: ' . htmlspecialchars($e->getMessage()));
 }
 
 // 4. Отправка в Telegram
-$tg_text = "<b>Новая заявка!</b>\n\n" .
-           "Дата: " . date('d.m.Y H:i') . "\n" .
-           "Имя: " . htmlspecialchars($name) . "\n" .
-           "Телефон: " . htmlspecialchars($phone) . "\n" .
-           "Сообщение: " . htmlspecialchars($message) . "\n" .
+$tg_text = "<b>New order!</b>\n\n" .
+           "Date: " . date('d.m.Y H:i') . "\n" .
+           "Name: " . htmlspecialchars($name) . "\n" .
+           "Phone: " . htmlspecialchars($phone) . "\n" .
+           "Massage: " . htmlspecialchars($message) . "\n" .
            "IP: " . $ip;
 
 $tg_url = "https://api.telegram.org/bot" . TELEGRAM_TOKEN .
