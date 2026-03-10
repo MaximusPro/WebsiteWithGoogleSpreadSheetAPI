@@ -38,12 +38,14 @@ Add headers in the first row:
 ```Code
 Date | Name | Phone | Message | IP
 ```
-Create a Service Account in Google Cloud
+#### 2. Create a Service Account in Google Cloud
 → Enable Google Sheets API
 → Create key → download JSON → rename to credentials.json
 → Share the spreadsheet with the client_email from the JSON file (role Editor)
-Create a Telegram bot via @BotFather
+#### 3. Create a Telegram bot via @BotFather
 Get the TOKEN
 Send any message to the bot → get your CHAT_ID via:
+```Code
 https://api.telegram.org/bot<TOKEN>/getUpdates
+```
 Edit submit.php with your values
