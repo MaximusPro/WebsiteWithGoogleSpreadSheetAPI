@@ -68,7 +68,7 @@ define('TELEGRAM_TOKEN',    '1234567890:DGDLGJLGDLJWIRSOGJDLHUZZP');
 define('TELEGRAM_CHAT_ID',  '1234567890');         // your chat id
 
 define('RECAPTCHA_SECRET',  '6Leds4MsAAAAAI1IUtvpKI9PdJjo_qDRUmO8lcYF');
-$SITE_KEY_RECAPCHA = '6LehTYIsAAAAABUXzjsHkUzDUZ3y9t0YqNCsDeyF';
+$SITE_KEY_RECAPCHA = '6LehTYIsAAHYJLBUXzjsHkUzDUZ3y9t0YqNCsDeyF';
 $MAX_REQUESTS_PER_5MIN = 5;   // sequrity from spam on IP
 // ===================================================
 ?>
