@@ -73,4 +73,39 @@ $MAX_REQUESTS_PER_5MIN = 5;   // sequrity from spam on IP
 // ===================================================
 ?>
 ```
+### 3. Installation into an existing Docker LAMP / site in the www folder
+Assumes you already have a running container with PHP/Apache and a volume mounted to /var/www/html.
+How to download Docker see on website:
+https://docker.com/...
+How to install lamp-compose see link on github:
+https://github.com/...
+#### 1. Copy project files into your site's folder:
+```Bash
+# On host
+cp -r ./* /path/to/your/docker/www/
+# or selectively
+cp index.php submit.php credentials.json /path/to/your/docker/www/
+```
+#### 2. Install Composer dependencies (inside the container)
+```Bash
+#Find your container name on active list
+docker ps 
+# Enter the container (replace container_name with actual name, e.g. lamp_web_1)
+docker exec -it container_name bash
 
+# Inside container
+cd /var/www/html
+
+# Increase timeout (important for google/apiclient)
+composer config process-timeout 1800
+
+# Move unzip so Composer won't find it
+mv /usr/bin/unzip /usr/bin/unzip.bak
+
+# Install packages
+composer install --no-interaction --prefer-dist
+
+# give back after installing
+mv /usr/bin/unzip.bak /usr/bin/unzip
+
+```
